@@ -32,6 +32,44 @@ class KnowledgeBase:
             for character in reader:
                 self.characters.append(character)
 
+    def get_variable_characteristics(self):
+        """
+            Returns a dictionary of characteristics that have more than
+            one possible value from the remaining population of 
+            characters. The key is the name of the characteristic.
+            The value is a list of all possible values that the
+            characteristic could be from the remaining characters.
+        """
+
+        # Initialize the attributes dictionary with each
+        # characteristic being an empty list of possible values
+        possible_Characteristics = {}
+        for key, value in self.characters[0].items():
+            possible_Characteristics[key] = []
+
+        # Go through each remaining character and add their
+        # value to the list of possible values if the list
+        # does not already contain that value
+        for char in self.characters:
+            for key, value in char.items():
+                if(value not in possible_Characteristics[key]):
+                    possible_Characteristics[key].append(value)
+
+        # Determine what characteristics only have one
+        # possible value
+        keysToDelete = []
+        for key, values in possible_Characteristics.items():
+            if(len(values) == 1):
+                keysToDelete.append(key)
+
+        # Remove all characteristics that only have one
+        # possible value, because it offers no possibility
+        # for what that characteristic could be, only
+        # a certainity of what it is.
+        for key in keysToDelete:
+            del possible_Characteristics[key]
+
+        return possible_Characteristics
 
     def tell(self,key,value):
     def tell(self, key, value):
