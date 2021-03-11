@@ -57,9 +57,23 @@ class KnowledgeBase:
                 value = "not " + value
             return value
 
-    def ask_vars(self,key,value):
+    def ask_vars(self, key, value):
         """
             Returns the list of remaining characters that meet the key,value pair
         """
-        raise NotImplementedError()
-        return []
+        possibleChars = []
+
+        isNegated = value.startswith("not ")
+
+        if(isNegated):
+            value = value[4:]
+
+        for character in self.characters:
+            charValue = character[key]
+            hasValue = (charValue == value)
+            # TODO: Make a truth table for this, shouldAppend = hasValue XOR isNegated
+            shouldAppend = (hasValue != isNegated)
+            if(shouldAppend):
+                possibleChars.append(character)
+
+        return possibleChars
