@@ -16,9 +16,11 @@ class KnowledgeBase:
         self.characters = []            # A list of all characters, initially (which are dictionaries)
         self.characteristics = {}       # A dictionary of all known characteristics
 
-        ##-- Read the characters and characteristics
+        # -- Read the characters and characteristics
         self.read_characters()
 
+        # Get a random character to interrogate
+        self.the_character = random.choice(self.characters)
 
     def read_characters(self):
         """
