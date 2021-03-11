@@ -100,7 +100,6 @@ class KnowledgeBase:
 
         return possible_Characteristics
 
-    def tell(self,key,value):
     def tell(self, key, value):
         """
             Tell the KnowledgeBase a new piece of information.
