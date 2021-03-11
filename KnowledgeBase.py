@@ -34,11 +34,14 @@ class KnowledgeBase:
 
 
     def tell(self,key,value):
+    def tell(self, key, value):
         """
             Tell the KnowledgeBase a new piece of information.
         """
-        raise NotImplementedError()
-
+        # Track this characteristic
+        self.characteristics[key] = value
+        # Remove characters that do not meet this requirement
+        self.characters = self.ask_vars(key, value)
 
     def ask(self,key,value):
         """
