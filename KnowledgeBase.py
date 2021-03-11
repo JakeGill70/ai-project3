@@ -1,5 +1,7 @@
 import csv
 import random
+import sys
+
 
 class KnowledgeBase:
 
@@ -31,6 +33,33 @@ class KnowledgeBase:
             reader = csv.DictReader(csvfile)
             for character in reader:
                 self.characters.append(character)
+
+    def get_most_impactful_characteristic(self):
+        """
+            Look through each of the possible variable characteristics
+            to determine which answer would remove the most suspects
+            from the self.characters list.
+            Returms a tuple (Name, Value, # of remaining characters if true)
+        """
+        # Determine what characteristics have multiple choices
+        possibleCharacteristics = self.get_variable_characteristics()
+        # Remove name as a characteristic because each name is unique,
+        # asking about the name only remove at most 1 possible character
+        del possibleCharacteristics["Name"]
+
+        bestCharacteristic = ""
+        bestValue = ""
+        bestLen = 999999999
+
+        for key, values in possibleCharacteristics.items():
+            for value in values:
+                currLen = len(self.ask_vars(key, value))
+                if(currLen < bestLen):
+                    bestLen = currLen
+                    bestCharacteristic = key
+                    bestValue = value
+
+        return (bestCharacteristic, bestValue, bestLen)
 
     def get_variable_characteristics(self):
         """
