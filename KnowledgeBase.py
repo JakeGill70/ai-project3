@@ -43,13 +43,19 @@ class KnowledgeBase:
         # Remove characters that do not meet this requirement
         self.characters = self.ask_vars(key, value)
 
-    def ask(self,key,value):
+    def ask(self, key, value):
         """
             Queries the_character about a specific key, value pair
         """
-        raise NotImplementedError()
-        return True
+        hasCharacteristic = (self.the_character[key] == value)
+        isBooleanValue = (value == "True" or value == "False")
 
+        if(isBooleanValue):
+            return str(hasCharacteristic)
+        else:
+            if(not hasCharacteristic):
+                value = "not " + value
+            return value
 
     def ask_vars(self,key,value):
         """
