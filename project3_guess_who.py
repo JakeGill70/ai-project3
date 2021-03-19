@@ -24,7 +24,7 @@ def main():
 
         print("")
 
-        print(f"Asking  about {bc[0]} being {bc[1]}...")
+        print(f"Asking about {bc[0]} being {bc[1]}...")
         result = kb.ask(bc[0], bc[1])
         print(f"{bc[0]} being {bc[1]} is {bc[1]==result}.")
 
