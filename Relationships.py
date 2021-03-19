@@ -76,12 +76,6 @@ class Relationships:
 
         return isNephew
 
-    def isSister(self, x, y):
-        raise NotImplementedError
-
-    def isBrother(self, x, y):
-        raise NotImplementedError
-
     def isCousin(self, x, y):
         xParents = []
         yParents = []
@@ -99,3 +93,9 @@ class Relationships:
                     parentsAreSiblings = True
 
         return parentsAreSiblings
+
+    def isSister(self, x, y):
+        return self.isSibling(x, y) and self.isFemale(y)
+
+    def isBrother(self, x, y):
+        return self.isSibling(x, y) and self.isMale(y)
