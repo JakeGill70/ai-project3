@@ -1,9 +1,9 @@
 from Relationships import Relationships
 
 
-
 def main():
     r = Relationships()
-    print(r.parent("Anita","Paul"))
+    print(r.isParent("Anita", "Paul"))
+
 
 main()
