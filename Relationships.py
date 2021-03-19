@@ -111,13 +111,25 @@ class Relationships:
         return self.isSibling(x, y) and self.isMale(y)
 
 # Grandparent
+    def isGrandparent(self, x, y):
+        raise NotImplementedError()
 
 # Grandfather
+    def isGrandfather(self, x, y):
+        raise NotImplementedError()
 
 # Grandmother
+    def isGrandmother(self, x, y):
+        raise NotImplementedError()
 
 # Great-Grandparent
+    def isGreatGrandparent(self, x, y):
+        raise NotImplementedError()
 
 # Great-Grandmother
+    def isGreatGrandmother(self, x, y):
+        raise NotImplementedError()
 
 # Great-Grandfather
+    def isGreatGrandfather(self, x, y):
+        raise NotImplementedError()
