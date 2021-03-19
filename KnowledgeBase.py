@@ -43,21 +43,24 @@ class KnowledgeBase:
         """
         # Determine what characteristics have multiple choices
         possibleCharacteristics = self.get_variable_characteristics()
-        # Remove name as a characteristic because each name is unique,
-        # asking about the name only remove at most 1 possible character
-        del possibleCharacteristics["Name"]
 
         bestCharacteristic = ""
         bestValue = ""
         bestLen = 999999999
 
         for key, values in possibleCharacteristics.items():
+            if(key == "Name"):
+                continue
             for value in values:
                 currLen = len(self.ask_vars(key, value))
                 if(currLen < bestLen):
                     bestLen = currLen
                     bestCharacteristic = key
                     bestValue = value
+
+        if(bestCharacteristic == ""):
+            bestCharacteristic = "Name"
+            bestValue = possibleCharacteristics["Name"][0]
 
         return (bestCharacteristic, bestValue, bestLen)
 
