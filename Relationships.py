@@ -10,6 +10,9 @@ class Relationships:
             d = json.loads(f.read())
             self.parents = d['parent']
 
+    def findCharacter(self, name):
+        return [char for char in self.kb.characters if char["Name"] == name][0]
+
     def isMale(self, x):
         raise NotImplementedError
 
