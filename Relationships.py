@@ -42,8 +42,22 @@ class Relationships:
                 return True
         return False
 
-    def isNeice(self, x, y):
-        raise NotImplementedError
+    def isNiece(self, x, y):
+        yParents = []
+        for char in self.kb.characters:
+            z = char["Name"]
+            if(self.isParent(y, z)):
+                yParents.append(z)
+
+        yParentIsSibling = False
+        for z in yParents:
+            if(self.isSibling(x, z)):
+                yParentIsSibling = True
+                break
+
+        isNiece = yParentIsSibling and self.isFemale(y)
+
+        return isNiece
 
     def isNepthew(self, x, y):
         raise NotImplementedError

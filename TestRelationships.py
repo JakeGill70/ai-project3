@@ -44,6 +44,14 @@ class TestRelationships(unittest.TestCase):
         assert r.isSpouse("Anita", "Alex") == False
         assert r.isSpouse("Paul", "Anita") == False
 
+    def test_niece(self):
+        r = Relationships()
+        assert r.isNiece("Tom", "Claire") == True
+        assert r.isNiece("Max", "Alex") == False
+        assert r.isNiece("Claire", "Tom") == False
+        assert r.isNiece("Anita", "Alex") == False
+        assert r.isNiece("Anita", "Joe") == False
+
 
 if __name__ == '__main__':
     unittest.main()
