@@ -14,10 +14,10 @@ class Relationships:
         return [char for char in self.kb.characters if char["Name"] == name][0]
 
     def isMale(self, x):
-        raise NotImplementedError
+        return self.findCharacter(x)["Gender"] == "Male"
 
     def isFemale(self, x):
-        raise NotImplementedError
+        return self.findCharacter(x)["Gender"] == "Female"
 
     def isParent(self, x, y):
         return {x: y} in self.parents
