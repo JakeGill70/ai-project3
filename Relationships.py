@@ -42,19 +42,16 @@ class Relationships:
                 return True
         return False
 
-    def isSister(self, x, y):
-        raise NotImplementedError
-
-    def isBrother(self, x, y):
-        raise NotImplementedError
-
     def isNeice(self, x, y):
         raise NotImplementedError
 
     def isNepthew(self, x, y):
         raise NotImplementedError
 
-    def isNiece(self, x, y):
+    def isSister(self, x, y):
+        raise NotImplementedError
+
+    def isBrother(self, x, y):
         raise NotImplementedError
 
     def isCousin(self, x, y):
