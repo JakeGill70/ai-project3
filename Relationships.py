@@ -19,15 +19,19 @@ class Relationships:
     def isFemale(self, x):
         return self.findCharacter(x)["Gender"] == "Female"
 
+# Parent
     def isParent(self, x, y):
         return {x: y} in self.parents
 
+# Father
     def isFather(self, x, y):
         return self.isParent(x, y) and self.isMale(y)
 
+# Mother
     def isMother(self, x, y):
         return self.isParent(x, y) and self.isFemale(y)
 
+# Sibling
     def isSibling(self, x, y):
         for char in self.kb.characters:
             z = char["Name"]
@@ -35,6 +39,7 @@ class Relationships:
                 return True
         return False
 
+# Spouse
     def isSpouse(self, x, y):
         for char in self.kb.characters:
             z = char["Name"]
@@ -42,6 +47,7 @@ class Relationships:
                 return True
         return False
 
+# Niece
     def isNiece(self, x, y):
         yParents = []
         for char in self.kb.characters:
@@ -59,6 +65,7 @@ class Relationships:
 
         return isNiece
 
+# Nephew
     def isNephew(self, x, y):
         yParents = []
         for char in self.kb.characters:
@@ -76,6 +83,7 @@ class Relationships:
 
         return isNephew
 
+# Cousin
     def isCousin(self, x, y):
         xParents = []
         yParents = []
@@ -94,8 +102,22 @@ class Relationships:
 
         return parentsAreSiblings
 
+# Sister
     def isSister(self, x, y):
         return self.isSibling(x, y) and self.isFemale(y)
 
+# Brother
     def isBrother(self, x, y):
         return self.isSibling(x, y) and self.isMale(y)
+
+# Grandparent
+
+# Grandfather
+
+# Grandmother
+
+# Great-Grandparent
+
+# Great-Grandmother
+
+# Great-Grandfather
