@@ -83,4 +83,19 @@ class Relationships:
         raise NotImplementedError
 
     def isCousin(self, x, y):
-        raise NotImplementedError
+        xParents = []
+        yParents = []
+        for char in self.kb.characters:
+            z = char["Name"]
+            if(self.isParent(x, z)):
+                xParents.append(z)
+            if(self.isParent(y, z)):
+                yParents.append(z)
+
+        parentsAreSiblings = False
+        for xp in xParents:
+            for yp in yParents:
+                if(self.isSibling(xp, yp)):
+                    parentsAreSiblings = True
+
+        return parentsAreSiblings

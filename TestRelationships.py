@@ -59,6 +59,14 @@ class TestRelationships(unittest.TestCase):
         assert r.isNephew("Tom", "Claire") == False
         assert r.isNephew("Peter", "Susan") == False
 
+    def test_cousin(self):
+        r = Relationships()
+        assert r.isCousin("Max", "Bill") == True
+        assert r.isCousin("Bernard", "Richard") == True
+        assert r.isCousin("Sam", "Bill") == False
+        assert r.isCousin("Paul", "Anne") == False
+        assert r.isCousin("Sam", "Maria") == False
+
 
 if __name__ == '__main__':
     unittest.main()
