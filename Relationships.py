@@ -23,10 +23,10 @@ class Relationships:
         return {x: y} in self.parents
 
     def isFather(self, x, y):
-        return isParent(x, y) and isMale(y)
+        return self.isParent(x, y) and self.isMale(y)
 
     def isMother(self, x, y):
-        return isParent(x, y) and isFemale(y)
+        return self.isParent(x, y) and self.isFemale(y)
 
     def isSibling(self, x, y):
         raise NotImplementedError
