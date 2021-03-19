@@ -36,7 +36,11 @@ class Relationships:
         return False
 
     def isSpouse(self, x, y):
-        raise NotImplementedError
+        for char in self.kb.characters:
+            z = char["Name"]
+            if(self.isParent(z, x) and self.isParent(z, y)):
+                return True
+        return False
 
     def isSister(self, x, y):
         raise NotImplementedError
