@@ -10,6 +10,25 @@ class Relationships:
             d = json.loads(f.read())
             self.parents = d['parent']
 
+        self.dispatchFunction = {
+            "Spouse": self.isSpouse,
+            "Sibling": self.isSibling,
+            "Sister": self.isSister,
+            "Brother": self.isBrother,
+            "Niece": self.isNiece,
+            "Nephew": self.isNephew,
+            "Cousin": self.isCousin,
+            "Parent": self.isParent,
+            "Mother": self.isMother,
+            "Father": self.isBrother,
+            "Grandparent": self.isGrandparent,
+            "Grandfather": self.isGrandfather,
+            "Grandmother": self.isGrandmother,
+            "Great-Grandparent": self.isGrandparent,
+            "Great-Grandfather": self.isGreatGrandfather,
+            "Great-Grandmother": self.isGreatGrandmother
+        }
+
     def getCharacters(self):
         return self.kb.characters
 
