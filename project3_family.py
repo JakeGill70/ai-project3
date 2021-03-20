@@ -51,9 +51,10 @@ def processInput(rawInput):
         # Request format: "RELATIONSHIP PERSON_X PERSON_Y"
         request = rawInput.split(" ")
         if(len(request) == 3):
-            relationship = request[0]
-            personX = request[1]
-            personY = request[2]
+            # Ensure that all 3 are capitalized
+            relationship = request[0].capitalize()
+            personX = request[1].capitalize()
+            personY = request[2].capitalize()
 
     # Return the results as a dictionary because tuples cause troubles
     return {"relationship": relationship, "x": personX, "y": personY}
