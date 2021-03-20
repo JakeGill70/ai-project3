@@ -75,6 +75,19 @@ class TestRelationships(unittest.TestCase):
         assert r.isCousin("Paul", "Anne") == False
         assert r.isCousin("Sam", "Maria") == False
 
+    def test_grandParent(self):
+        r = Relationships()
+        assert r.isGrandparent("Philip", "Paul") == True
+        assert r.isGrandparent("Robert", "Susan") == True
+        assert r.isGrandparent("Paul", "Max") == False
+        assert r.isGrandparent("Eric", "Charles") == False
+
+        assert r.isGrandfather("Claire", "Sam") == True
+        assert r.isGrandfather("Claire", "Susan") == False
+
+        assert r.isGrandmother("Eric", "Anita") == True
+        assert r.isGrandmother("Eric", "Peter") == False
+
 
 if __name__ == '__main__':
     unittest.main()

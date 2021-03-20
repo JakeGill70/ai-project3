@@ -112,15 +112,25 @@ class Relationships:
 
 # Grandparent
     def isGrandparent(self, x, y):
-        raise NotImplementedError()
+        xParents = []
+        for char in self.kb.characters:
+            z = char["Name"]
+            if(self.isParent(x, z)):
+                xParents.append(z)
+
+        for xParent in xParents:
+            if(self.isParent(xParent, y)):
+                return True
+
+        return False
 
 # Grandfather
     def isGrandfather(self, x, y):
-        raise NotImplementedError()
+        return self.isGrandparent(x, y) and self.isMale(y)
 
 # Grandmother
     def isGrandmother(self, x, y):
-        raise NotImplementedError()
+        return self.isGrandparent(x, y) and self.isFemale(y)
 
 # Great-Grandparent
     def isGreatGrandparent(self, x, y):
