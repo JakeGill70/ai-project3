@@ -72,21 +72,21 @@ def verifyInput(processedInput, relationships):
     # Is the relationship defined?
     if(relationship not in relationships.dispatchFunction.keys()):
         print(
-            f"Relationship not defined. Relationship must be: {list(relationships.dispatchFunction.keys())}",
+            f"Relationship '{relationship}' is not defined. Relationship must be: {list(relationships.dispatchFunction.keys())}",
             file=sys.stderr)
         isValidInput = False
 
     # Does person_x exist?
     if(not relationships.findCharacter(personX)):
         print(
-            f"{personX} is not defined. Person X must be: {[c['Name'] for c in relationships.getCharacters()]}",
+            f"Person '{personX}' is not defined. Person X must be: {[c['Name'] for c in relationships.getCharacters()]}",
             file=sys.stderr)
         isValidInput = False
 
     # Does person_y exist?
     if(not relationships.findCharacter(personY)):
         print(
-            f"{personY} is not defined. Person X must be: {[c['Name'] for c in relationships.getCharacters()]}",
+            f"Person '{personY}' is not defined. Person X must be: {[c['Name'] for c in relationships.getCharacters()]}",
             file=sys.stderr)
         isValidInput = False
 
