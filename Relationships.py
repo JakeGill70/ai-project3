@@ -10,6 +10,9 @@ class Relationships:
             d = json.loads(f.read())
             self.parents = d['parent']
 
+    def getCharacters(self):
+        return self.kb.characters
+
     def findCharacter(self, name):
         return [char for char in self.kb.characters if char["Name"] == name][0]
 
@@ -33,7 +36,7 @@ class Relationships:
 
 # Sibling
     def isSibling(self, x, y):
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(x, z) and self.isParent(y, z)):
                 return True
@@ -41,7 +44,7 @@ class Relationships:
 
 # Spouse
     def isSpouse(self, x, y):
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(z, x) and self.isParent(z, y)):
                 return True
@@ -50,7 +53,7 @@ class Relationships:
 # Niece
     def isNiece(self, x, y):
         yParents = []
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(y, z)):
                 yParents.append(z)
@@ -68,7 +71,7 @@ class Relationships:
 # Nephew
     def isNephew(self, x, y):
         yParents = []
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(y, z)):
                 yParents.append(z)
@@ -87,7 +90,7 @@ class Relationships:
     def isCousin(self, x, y):
         xParents = []
         yParents = []
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(x, z)):
                 xParents.append(z)
@@ -113,7 +116,7 @@ class Relationships:
 # Grandparent
     def isGrandparent(self, x, y):
         xParents = []
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isParent(x, z)):
                 xParents.append(z)
@@ -135,7 +138,7 @@ class Relationships:
 # Great-Grandparent
     def isGreatGrandparent(self, x, y):
         xGrandParents = []
-        for char in self.kb.characters:
+        for char in self.getCharacters():
             z = char["Name"]
             if(self.isGrandparent(x, z)):
                 xGrandParents.append(z)
