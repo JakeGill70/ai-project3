@@ -14,7 +14,10 @@ class Relationships:
         return self.kb.characters
 
     def findCharacter(self, name):
-        return [char for char in self.kb.characters if char["Name"] == name][0]
+        try:
+            return [char for char in self.getCharacters() if char["Name"] == name][0]
+        except IndexError:
+            return None
 
     def isMale(self, x):
         return self.findCharacter(x)["Gender"] == "Male"
