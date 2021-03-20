@@ -143,7 +143,7 @@ def main():
         # If the request lead to a result, print it, otherwise, inform that it wasn't a good request
         if(request["result"] != None):
             print(
-                f"({request['result']}) {request['y']} is {'NOT ' if not request['result'] else ''}{request['x']}'s {request['relationship']}.")
+                f"({request['result']}) {request['y']} is {'NOT ' if not request['result'] else ''}{request['x']}'s {request['relationship'].lower()}.")
         else:
             print("That request could not be processed.")
 
