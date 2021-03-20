@@ -134,7 +134,7 @@ def main():
         rawInput = input()
 
         # Safe exit for the program
-        if(rawInput == "exit"):
+        if(rawInput.strip().lower().startswith("exit")):
             break
 
         # Process the request
