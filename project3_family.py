@@ -33,12 +33,27 @@ def processInput(rawInput):
     personX = None
     personY = None
 
-    # Request format: "RELATIONSHIP PERSON_X PERSON_Y"
-    request = rawInput.split(" ")
-    if(len(request) == 3):
-        relationship = request[0]
-        personX = request[1]
-        personY = request[2]
+    if(rawInput.lower().startswith("is ")):
+        # NLP input
+        request = rawInput.split(" ")
+        if(len(request) == 4):
+            # Ignore request[0] because it is "is"
+            # Ensure first letter is capitalized
+            personY = request[1].capitalize()
+            # Remove 's if necessary
+            # Ensure first letter is capitalized
+            personX = request[2][:-2].capitalize() if request[2].endswith("'s") else request[2].capitalize()
+            # Remove ? if necessary
+            # Ensure first letter is capitalized
+            relationship = request[3][:-1].capitalize() if request[3].endswith("?") else request[3].capitalize()
+    else:
+        # Normal input
+        # Request format: "RELATIONSHIP PERSON_X PERSON_Y"
+        request = rawInput.split(" ")
+        if(len(request) == 3):
+            relationship = request[0]
+            personX = request[1]
+            personY = request[2]
 
     # Return the results as a dictionary because tuples cause troubles
     return {"relationship": relationship, "x": personX, "y": personY}
