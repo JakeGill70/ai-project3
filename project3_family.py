@@ -123,7 +123,9 @@ def main():
     relationships = Relationships()
     makeRelationshipOutput(relationships, "RelationshipOutput.csv")
 
-    print("\nRequest Format: 'RELATIONSHIP PERSON_X PERSON_Y'")
+    print("\nStrict Request Format: 'RELATIONSHIP PERSON_X PERSON_Y'")
+    print("Easy Request Format: '[is/Is] PERSON_Y PERSON_X['s] RELATIONSHIP[?]'")
+    print("Type 'exit' to quit")
 
     while(True):
         # Get request as raw input
