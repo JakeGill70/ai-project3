@@ -49,15 +49,25 @@ class KnowledgeBase:
         bestLen = 999999999
 
         for key, values in possibleCharacteristics.items():
+            # Ignore the name, because if names are unique, then guessing a name
+            # would always elimate the most remaining characters.
             if(key == "Name"):
                 continue
             for value in values:
+                # Count the number of remaining suspects if the answer to the question is true
                 currLen = len(self.ask_vars(key, value))
+                # If the number of remaining suspects lower than anything else found so far,
+                # then store the question that asks about that characteristic and gives that result.
                 if(currLen < bestLen):
                     bestLen = currLen
                     bestCharacteristic = key
                     bestValue = value
 
+        # If no other characteristic could trim down the number of remaining characters,
+        # Then consider the name as the best characteristic.
+        # Considering that any name would elimate all other suspects if guessed correctly,
+        # no name is a better guess than any other. With that in mind, the first name
+        # available is used to simplicity of implmementation.
         if(bestCharacteristic == ""):
             bestCharacteristic = "Name"
             bestValue = possibleCharacteristics["Name"][0]
@@ -116,12 +126,18 @@ class KnowledgeBase:
         """
             Queries the_character about a specific key, value pair
         """
+        # Determine if the secret character has the specific characteristic value
         hasCharacteristic = (self.the_character[key] == value)
+        # Determine if that characteristic is a boolean choice
         isBooleanValue = (value == "True" or value == "False")
 
+        # If the characteristic is boolean, just return it as a string
         if(isBooleanValue):
             return str(hasCharacteristic)
         else:
+            # If the characteristic is NOT boolean...
+            # Return the value if the secret character has the characteristic,
+            # and prepend "not " if the secret character does not have the characteristic.
             if(not hasCharacteristic):
                 value = "not " + value
             return value
@@ -132,16 +148,29 @@ class KnowledgeBase:
         """
         possibleChars = []
 
+        # This function needs to check for characters that do not have
+        # the given value for the given characteristic (key) if the value
+        # starts with a "not ".
         isNegated = value.startswith("not ")
 
+        # If a "not " was prepended to indicate negation, then the "not "
+        # needs to be removed from the value so that comparisons can be
+        # performed on the value.
         if(isNegated):
             value = value[4:]
 
+        # Loops through every remaining character to see who meets the constraint
+        # defined by the key value pair.
         for character in self.characters:
             charValue = character[key]
+            # Determine if the character has the value
             hasValue = (charValue == value)
-            # TODO: Make a truth table for this, shouldAppend = hasValue XOR isNegated
+            # Determine if the character should have the value (considering negation)
+            # This looks odd, but it is just how python handles XOR
             shouldAppend = (hasValue != isNegated)
+            # Append the character to the list of remaining characters that the
+            # secret character could be if the character meets the above
+            # characteristic criteria.
             if(shouldAppend):
                 possibleChars.append(character)
 
