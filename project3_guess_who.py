@@ -1,11 +1,33 @@
 from KnowledgeBase import KnowledgeBase
 
 
+def printPopositionialLogic():
+    '''
+        Helper method used to generate the propositional logic necessary
+        for project 3 part 1.
+
+        Unless intentially modified, this code is not used in the main method.
+    '''
+    print("Propositional Logic: ")
+    for c in kb.characters:
+        s += f"{c['Name']}: NAME_{c['Name']}_ = \"{c['Name']}\" ꓥ "
+        s += f"{c['Gender']} ꓥ {c['Hair Color']}Hair_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Bald']=='False' else ''}Bald_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Hat']=='False' else ''}Hat_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Mustache']=='False' else ''}Mustache_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Beard']=='False' else ''}Beard_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Glasses']=='False' else ''}Glasses_{c['Name']}_ ꓥ "
+        s += f"{'¬' if c['Earrings']=='False' else ''}Earrings_{c['Name']}_"
+        print(s)
+
+
 def main():
     """
         Driver Method
     """
     kb = KnowledgeBase()
+
+    # printPopositionialLogic()
 
     print("======================================")
     print(f"Looking for {kb.the_character['Name']}.")
