@@ -1,6 +1,8 @@
 from Relationships import Relationships
 import sys
 
+RELATIONSHIP_OUTPUT_CSV_FILENAME = "all_relationships.csv"  # Set to None to not save output to file
+
 
 def makeRelationshipOutput(relationships, fileName=None):
 
@@ -122,7 +124,7 @@ def processRequest(rawInput, relationships):
 
 def main():
     relationships = Relationships()
-    makeRelationshipOutput(relationships, "RelationshipOutput.csv")
+    makeRelationshipOutput(relationships, RELATIONSHIP_OUTPUT_CSV_FILENAME)
 
     print("\nStrict Request Format: 'RELATIONSHIP PERSON_X PERSON_Y'")
     print("Easy Request Format: '[is/Is] PERSON_Y PERSON_X['s] RELATIONSHIP[?]'")
